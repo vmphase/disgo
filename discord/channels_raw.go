@@ -39,6 +39,7 @@ type guildTextChannel struct {
 	ParentID                   *snowflake.ID         `json:"parent_id"`
 	LastPinTimestamp           *time.Time            `json:"last_pin_timestamp"`
 	DefaultAutoArchiveDuration AutoArchiveDuration   `json:"default_auto_archive_duration"`
+	Flags                      ChannelFlags          `json:"flags"`
 }
 
 func (t *guildTextChannel) UnmarshalJSON(data []byte) error {
@@ -69,6 +70,7 @@ type guildNewsChannel struct {
 	LastMessageID              *snowflake.ID         `json:"last_message_id"`
 	LastPinTimestamp           *time.Time            `json:"last_pin_timestamp"`
 	DefaultAutoArchiveDuration AutoArchiveDuration   `json:"default_auto_archive_duration"`
+	Flags                      ChannelFlags          `json:"flags"`
 }
 
 func (t *guildNewsChannel) UnmarshalJSON(data []byte) error {
@@ -142,6 +144,7 @@ type guildVoiceChannel struct {
 	LastMessageID        *snowflake.ID         `json:"last_message_id"`
 	NSFW                 bool                  `json:"nsfw"`
 	RateLimitPerUser     int                   `json:"rate_limit_per_user"`
+	Flags                ChannelFlags          `json:"flags"`
 }
 
 func (t *guildVoiceChannel) UnmarshalJSON(data []byte) error {

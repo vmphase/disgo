@@ -42,6 +42,7 @@ const (
 	_
 	ChannelFlagRequireTag
 	ChannelFlagHideMediaDownloadOptions ChannelFlags = 1 << 15
+	ChannelFlagSpoiler                  ChannelFlags = 1 << 21
 	ChannelFlagsNone                    ChannelFlags = 0
 )
 
@@ -253,6 +254,7 @@ type GuildTextChannel struct {
 	parentID                   *snowflake.ID
 	lastPinTimestamp           *time.Time
 	defaultAutoArchiveDuration AutoArchiveDuration
+	Flags                      ChannelFlags
 }
 
 func (c *GuildTextChannel) UnmarshalJSON(data []byte) error {
@@ -273,6 +275,7 @@ func (c *GuildTextChannel) UnmarshalJSON(data []byte) error {
 	c.parentID = v.ParentID
 	c.lastPinTimestamp = v.LastPinTimestamp
 	c.defaultAutoArchiveDuration = v.DefaultAutoArchiveDuration
+	c.Flags = v.Flags
 	return nil
 }
 
@@ -291,6 +294,7 @@ func (c GuildTextChannel) MarshalJSON() ([]byte, error) {
 		ParentID:                   c.parentID,
 		LastPinTimestamp:           c.lastPinTimestamp,
 		DefaultAutoArchiveDuration: c.defaultAutoArchiveDuration,
+		Flags:                      c.Flags,
 	})
 }
 
@@ -535,6 +539,7 @@ type GuildVoiceChannel struct {
 	lastMessageID        *snowflake.ID
 	nsfw                 bool
 	rateLimitPerUser     int
+	Flags                ChannelFlags
 }
 
 func (c *GuildVoiceChannel) UnmarshalJSON(data []byte) error {
@@ -556,6 +561,7 @@ func (c *GuildVoiceChannel) UnmarshalJSON(data []byte) error {
 	c.lastMessageID = v.LastMessageID
 	c.nsfw = v.NSFW
 	c.rateLimitPerUser = v.RateLimitPerUser
+	c.Flags = v.Flags
 	return nil
 }
 
@@ -575,6 +581,7 @@ func (c GuildVoiceChannel) MarshalJSON() ([]byte, error) {
 		LastMessageID:        c.lastMessageID,
 		NSFW:                 c.nsfw,
 		RateLimitPerUser:     c.rateLimitPerUser,
+		Flags:                c.Flags,
 	})
 }
 
@@ -761,6 +768,7 @@ type GuildNewsChannel struct {
 	parentID                   *snowflake.ID
 	lastPinTimestamp           *time.Time
 	defaultAutoArchiveDuration AutoArchiveDuration
+	Flags                      ChannelFlags
 }
 
 func (c *GuildNewsChannel) UnmarshalJSON(data []byte) error {
@@ -781,6 +789,7 @@ func (c *GuildNewsChannel) UnmarshalJSON(data []byte) error {
 	c.parentID = v.ParentID
 	c.lastPinTimestamp = v.LastPinTimestamp
 	c.defaultAutoArchiveDuration = v.DefaultAutoArchiveDuration
+	c.Flags = v.Flags
 	return nil
 }
 
@@ -799,6 +808,7 @@ func (c GuildNewsChannel) MarshalJSON() ([]byte, error) {
 		ParentID:                   c.parentID,
 		LastPinTimestamp:           c.lastPinTimestamp,
 		DefaultAutoArchiveDuration: c.defaultAutoArchiveDuration,
+		Flags:                      c.Flags,
 	})
 }
 
