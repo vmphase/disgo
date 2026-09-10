@@ -118,6 +118,7 @@ type Message struct {
 	Flags                MessageFlags          `json:"flags"`
 	MessageReference     *MessageReference     `json:"message_reference,omitempty"`
 	MessageSnapshots     []MessageSnapshot     `json:"message_snapshots,omitempty"`
+	// Deprecated: use InteractionMetadata instead.
 	Interaction          *MessageInteraction   `json:"interaction,omitempty"`
 	WebhookID            *snowflake.ID         `json:"webhook_id,omitempty"`
 	Activity             *MessageActivity      `json:"activity,omitempty"`
